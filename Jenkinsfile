@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs "node10"
+        gradle 'Gradle_7.4.2'
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
         stage ("run frontend"){
             steps{
                 echo 'executing yarn...'
-                nodejs ('Node-10.17.0'){
+                nodejs ('Node_10.17.0'){
                     sh 'yarn install'
                 }
             }
@@ -38,9 +38,7 @@ pipeline {
         stage ("run backend"){
             steps{
                 echo 'executing gradle...'
-                withGradle(){
-                    sh './gradlew -v'
-                }
+                sh './gradlew -v'
             }
         }
 
